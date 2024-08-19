@@ -26,4 +26,19 @@ RSpec.describe Merchant, type: :model do
       expect(merchant.total_transaction_sum).to eq(0)
     end
   end
+
+  describe 'deletion restrictions' do
+    let!(:merchant) { create(:merchant) }
+
+    it 'cannot be deleted if there are associated transactions' do
+      create(:authorize_transaction, merchant:)
+
+      expect { merchant.destroy }.to_not change(Merchant, :count)
+      expect(merchant.errors[:base]).to include('Cannot delete record because dependent transactions exist')
+    end
+
+    it 'can be deleted if there are no associated transactions' do
+      expect { merchant.destroy }.to change(Merchant, :count).by(-1)
+    end
+  end
 end

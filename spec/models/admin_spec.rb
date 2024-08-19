@@ -8,9 +8,9 @@ RSpec.describe Admin, type: :model do
   end
 
   describe 'callbacks' do
-    it 'sets the role to admin after initialization' do
-      admin = Admin.new
-      expect(admin.role).to eq('admin')
+    it 'sets the type to admin after initialization' do
+      admin = build(:admin)
+      expect(admin.type).to eq('Admin')
     end
   end
 end

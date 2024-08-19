@@ -1,0 +1,4 @@
+name,email,status,type,description
+Alice,alice@example.com,active,admin,Admin user
+Bob,bob@example.com,active,merchant,Merchant user
+Carol,carol@example.com,inactive,merchant,Inactive merchant

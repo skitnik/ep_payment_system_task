@@ -1,0 +1,3 @@
+name,email,status,type
+Alice,alice@example.com,active,invalid_type
+Bob,bob@example.com,active,invalid_type
