@@ -3,7 +3,15 @@
 class Transaction < ApplicationRecord
   enum status: { approved: 'approved', reversed: 'reversed', refunded: 'refunded', error: 'error' }
   belongs_to :merchant
-  belongs_to :reference_transaction, class_name: 'Transaction', optional: true
+  belongs_to :reference_transaction,
+             class_name: 'Transaction',
+             optional: true
+
+  has_many :referenced_transactions,
+           class_name: 'Transaction',
+           foreign_key: 'reference_transaction_id',
+           dependent: :restrict_with_error,
+           inverse_of: :reference_transaction
 
   validates :uuid, :customer_email, presence: true
   validates :uuid, uniqueness: true

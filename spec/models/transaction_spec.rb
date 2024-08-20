@@ -9,6 +9,11 @@ RSpec.describe Transaction, type: :model do
 
   it { should belong_to(:merchant) }
   it { should belong_to(:reference_transaction).class_name('Transaction').optional }
+  it {
+    is_expected.to have_many(:referenced_transactions)
+      .class_name('Transaction')
+      .with_foreign_key('reference_transaction_id')
+  }
 
   it { should validate_presence_of(:uuid) }
   it { should validate_uniqueness_of(:uuid) }
