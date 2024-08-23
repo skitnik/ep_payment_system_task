@@ -1,0 +1,7 @@
+<payment>
+  <amount>0</amount>
+  <customer_email>customer@example.com</customer_email>
+  <customer_phone>1234567890</customer_phone>
+  <transaction_type>authorize</transaction_type>
+  <reference_transaction_id></reference_transaction_id>
+</payment>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_15_141813) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_20_100128) do
+  create_table "jwt_tokens", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "token"
+    t.datetime "exp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_jwt_tokens_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string "uuid", null: false
     t.decimal "amount", precision: 10, scale: 2
@@ -31,6 +40,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_141813) do
     t.string "type"
     t.string "name"
     t.string "email", null: false
+    t.string "password_digest"
     t.integer "status", default: 0, null: false
     t.text "description"
     t.datetime "created_at", null: false
@@ -38,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_141813) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "jwt_tokens", "users"
   add_foreign_key "transactions", "transactions", column: "reference_transaction_id"
   add_foreign_key "transactions", "users", column: "merchant_id"
 end

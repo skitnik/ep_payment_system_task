@@ -13,11 +13,7 @@ RSpec.describe ReversalTransaction, type: :model do
   it 'validates that the amount is zero or nil for reversal transactions' do
     reversal_transaction = build(:reversal_transaction, amount: 100.0)
     expect(reversal_transaction).to_not be_valid
-    expect(reversal_transaction.errors[:amount]).to include('must be 0 or nil for reversal transactions')
-
-    reversal_transaction = build(:reversal_transaction, amount: nil)
-    expect(reversal_transaction).to_not be_valid
-    expect(reversal_transaction.errors[:amount]).to include('must be 0 or nil for reversal transactions')
+    expect(reversal_transaction.errors[:amount]).to include('must be 0 or none for reversal transactions')
   end
 
   it 'reverses the charge transaction and updates the status to reversed' do

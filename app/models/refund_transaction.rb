@@ -8,10 +8,8 @@ class RefundTransaction < Transaction
 
   private
 
-  def reference_transaction_required
-    return if reference_transaction.present? && reference_transaction.is_a?(ChargeTransaction)
-
-    errors.add(:reference_transaction, 'must be present and of type ChargeTransaction')
+  def reference_transaction_type
+    ChargeTransaction
   end
 
   def process_refund

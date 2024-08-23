@@ -32,6 +32,16 @@ class Transaction < ApplicationRecord
                     end
   end
 
+  def reference_transaction_valid?
+    reference_transaction.present? && reference_transaction.is_a?(reference_transaction_type)
+  end
+
+  def reference_transaction_required
+    return if reference_transaction_valid?
+
+    errors.add(:reference_transaction, "must be present and of type #{reference_transaction_type}")
+  end
+
   def default_status
     :approved
   end

@@ -2,10 +2,11 @@
 
 FactoryBot.define do
   factory :user do
-    name { 'MyString' }
-    email { 'MyString' }
+    name { 'name' }
+    email { 'email@example.com' }
+    password { 'password' }
     status { 1 }
     total_transaction_sum { '9.99' }
-    description { 'MyText' }
+    description { 'description' }
   end
 end

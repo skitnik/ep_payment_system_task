@@ -1,0 +1,30 @@
+authorize_payment:
+  amount: 100.00
+  customer_email: 'customer@example.com'
+  customer_phone: '1234567890'
+  transaction_type: 'authorize'
+  reference_transaction_id: null
+
+charge_payment:
+  amount: 50.00
+  customer_email: 'customer@example.com'
+  customer_phone: '1234567890'
+  transaction_type: 'charge'
+  reference_transaction_id: 1
+
+refund_payment:
+  amount: 50.00
+  customer_email: 'customer@example.com'
+  customer_phone: '1234567890'
+  transaction_type: 'refund'
+  reference_transaction_id: 2
+
+reversal_payment:
+  amount: 0
+  customer_email: 'customer@example.com'
+  customer_phone: '1234567890'
+  transaction_type: 'reversal'
+  reference_transaction_id: 1
+
+invalid_payment:
+  amount: null

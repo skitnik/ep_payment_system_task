@@ -42,6 +42,7 @@ class ImportUserService
     {
       name: row['name'],
       email: row['email'],
+      password: row['password'],
       status: row['status'],
       description: row['description']
     }
