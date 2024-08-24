@@ -1,0 +1,9 @@
+h1 Transactions
+
+- if flash[:alert]
+        .alert.alert-danger
+          = flash[:alert]
+
+- if @transactions.any?
+  = render 'table', transactions: @transactions
+

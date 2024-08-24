@@ -19,9 +19,14 @@ class Transaction < ApplicationRecord
 
   scope :approved_charges, -> { where(type: 'ChargeTransaction', status: 'approved') }
 
-  before_create :set_initial_status
+  before_validation :initialize_attributes, on: :create
 
   private
+
+  def initialize_attributes
+    set_initial_status
+    generate_uuid
+  end
 
   def set_initial_status
     self.status ||= if reference_transaction.present? &&
@@ -40,6 +45,10 @@ class Transaction < ApplicationRecord
     return if reference_transaction_valid?
 
     errors.add(:reference_transaction, "must be present and of type #{reference_transaction_type}")
+  end
+
+  def generate_uuid
+    self.uuid = SecureRandom.uuid if uuid.blank?
   end
 
   def default_status

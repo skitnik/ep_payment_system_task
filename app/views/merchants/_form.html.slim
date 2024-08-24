@@ -1,0 +1,29 @@
+.row.justify-content-center.mt-5
+  .col-md-8
+    = form_with model: @merchant, local: true, class: 'bg-light p-4 rounded shadow-sm' do |f|
+      - if @merchant.errors.any?
+        .alert.alert-danger
+          - @merchant.errors.full_messages.each do |message|
+            p = message
+      .form-group
+        = f.label :name, class: 'form-label'
+        = f.text_field :name, class: 'form-control border-dark', placeholder: 'Name', disabled: disabled
+      .form-group
+        = f.label :email, class: 'form-label'
+        = f.email_field :email, class: 'form-control border-dark', placeholder: 'Email', disabled: disabled
+      .form-group
+        = f.label :description, class: 'form-label'
+        = f.text_area :description, class: 'form-control border-dark', placeholder: 'Description', disabled: disabled
+      .form-group
+        = f.label :status, class: 'form-label'
+        = f.select :status, Merchant.statuses.keys.map { |status| [status.humanize, status] }, {}, class: 'form-control border-dark', disabled: disabled
+      - if disabled
+        .form-group
+          = f.label :total_transaction_sum, class: 'form-label'
+          = f.number_field :total_transaction_sum, class: 'form-control border-dark', disabled: disabled
+
+      .text-center
+        - unless disabled
+          = f.submit action_name.humanize, class: 'btn btn-dark mt-3'
+        = link_to 'Back', request.referer, class: 'btn btn-secondary mt-3'
+

@@ -15,7 +15,6 @@ RSpec.describe Transaction, type: :model do
       .with_foreign_key('reference_transaction_id')
   }
 
-  it { should validate_presence_of(:uuid) }
   it { should validate_uniqueness_of(:uuid) }
   it { should validate_presence_of(:customer_email) }
 
@@ -53,6 +52,21 @@ RSpec.describe Transaction, type: :model do
         transaction.save
         expect(transaction.status).to eq('error')
       end
+    end
+  end
+
+  describe 'UUID generation' do
+    it 'generates a UUID if not provided' do
+      transaction = build(:transaction, merchant:, uuid: nil)
+      transaction.save
+      expect(transaction.uuid).not_to be_nil
+    end
+
+    it 'does not change an existing UUID' do
+      uuid = SecureRandom.uuid
+      transaction = create(:transaction, merchant:, uuid:)
+      transaction.save
+      expect(transaction.uuid).to eq(uuid)
     end
   end
 end

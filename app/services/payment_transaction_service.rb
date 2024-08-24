@@ -35,7 +35,6 @@ class PaymentTransactionService
 
   def transaction_params
     {
-      uuid: SecureRandom.uuid,
       amount: @params['amount'],
       customer_email: @params['customer_email'],
       customer_phone: @params['customer_phone'],

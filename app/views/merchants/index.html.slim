@@ -1,0 +1,30 @@
+h1 Merchants
+- if flash[:alert]
+        .alert.alert-danger
+          = flash[:alert]
+- if flash[:notice]
+        .alert.alert-info
+          = flash[:notice]
+
+- if @merchants
+  table.table
+    thead
+      tr
+        th Name
+        th Email
+        th Description  
+        th Status 
+        th Actions
+    tbody
+      - @merchants.each do |merchant|
+        tr
+          td = merchant.name
+          td = merchant.email
+          td = merchant.description
+          td = merchant.status
+          td
+            = link_to 'Show', merchant_path(merchant), class: 'btn btn-dark'
+            = link_to 'Edit', edit_merchant_path(merchant), class: 'btn btn-warning ml'
+            = link_to 'Destroy', merchant_path(merchant), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger'
+  = will_paginate @merchants
+

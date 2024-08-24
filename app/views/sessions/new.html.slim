@@ -1,0 +1,13 @@
+.row.justify-content-center.mt-5
+  .col-md-6
+    h1.text-center Login
+    = form_with url: login_path, method: :post, local: true, data: { turbo: false }, class: 'bg-light p-4 rounded shadow-sm' do |f|
+      - if flash[:alert]
+        .alert.alert-danger
+          = flash[:alert]
+      .form-group
+        = f.email_field 'session[email]', class: 'form-control border-dark', placeholder: 'Email'
+      .form-group
+        = f.password_field 'session[password]', class: 'form-control border-dark mt-2', placeholder: 'Password'
+      .form-group.text-center
+        = f.submit 'Log In', class: 'btn btn-dark mt-5'

@@ -1,0 +1,73 @@
+.row.justify-content-center.mt-5
+  .col-md-8
+    h1.text-center Transaction Details
+    .card.mt-4
+      .card-body
+        p
+          strong UUID: 
+          = @transaction.uuid
+        p
+          strong Type: 
+          = @transaction.type.humanize
+        p
+          strong Status: 
+          = @transaction.status.humanize
+        p
+          strong Amount: 
+          = number_to_currency(@transaction.amount) if @transaction.amount
+        p
+          strong Customer Email: 
+          = @transaction.customer_email
+        p
+          strong Customer Phone: 
+          = @transaction.customer_phone if @transaction.customer_phone
+        p
+          strong Created At: 
+          = l(@transaction.created_at, format: :long)
+    
+    - if @parent_transaction
+      .card.mt-4
+          .card-body
+            h3 Parent transaction
+            table.table.table-bordered.table-hover.mt-3
+              thead.thead-dark
+                tr
+                  th UUID
+                  th Type
+                  th Status
+                  th Amount
+                  th Date
+              tbody
+                tr
+                  td = @parent_transaction.uuid
+                  td = @parent_transaction.type
+                  td = @parent_transaction.status.humanize
+                  td = number_to_currency(@parent_transaction.amount) if @parent_transaction.amount
+                  td = l(@parent_transaction.created_at, format: :short)
+
+    - if @transaction.referenced_transactions.any?
+      .card.mt-4
+        .card-body
+          h3 Related Transactions
+          table.table.table-bordered.table-hover.mt-3
+            thead.thead-dark
+              tr
+                th UUID
+                th Type
+                th Status
+                th Amount
+                th Date
+            tbody
+              - @transaction.referenced_transactions.each do |ref_transaction|
+                tr
+                  td = ref_transaction.uuid
+                  td = ref_transaction.type
+                  td = ref_transaction.status.humanize
+                  td = number_to_currency(ref_transaction.amount) if ref_transaction.amount
+                  td = l(ref_transaction.created_at, format: :short)
+
+    .text-center.mt-4
+      = link_to 'Back to Transactions', request.referer, class: 'btn btn-secondary'
+
+
+

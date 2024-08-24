@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :transaction do
-    uuid { SecureRandom.uuid }
     amount { 100.0 }
     customer_email { 'customer@example.com' }
     customer_phone { '1234567890' }

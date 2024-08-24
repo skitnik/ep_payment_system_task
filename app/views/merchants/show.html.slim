@@ -1,0 +1,7 @@
+h1 Merchant details
+
+= render 'form', merchant: @merchant, disabled: true
+
+- if @transactions.any?
+  h2 Transactions
+  = render '/transactions/table', transactions: @transactions

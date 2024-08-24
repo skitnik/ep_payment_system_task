@@ -1,0 +1,27 @@
+.row.justify-content-center.mt-5
+  .col-md-12
+    table.table.table-bordered.table-hover.mt-4
+      thead.thead-dark
+        tr
+          th UUID
+          th Type
+          th Amount
+          th Status
+          th Customer email
+          th Customer phone
+          th Merchant Name
+          th Date
+      tbody
+        - @transactions.each do |transaction|
+          tr
+            td = link_to transaction.uuid, transaction_path(transaction) 
+            td = transaction.type
+            td = number_to_currency(transaction.amount)
+            td = transaction.status.humanize
+            td = transaction.customer_email
+            td = transaction.customer_phone
+            td = transaction.merchant.name
+            td = l(transaction.created_at, format: :short)
+
+    = will_paginate @transactions
+
