@@ -5,6 +5,9 @@
       - if flash[:alert]
         .alert.alert-danger
           = flash[:alert]
+      - if flash[:notice]
+        .alert.alert-danger
+          = flash[:notice]
       .form-group
         = f.email_field 'session[email]', class: 'form-control border-dark', placeholder: 'Email'
       .form-group

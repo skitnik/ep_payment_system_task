@@ -1,7 +1,24 @@
-h1 Merchant details
+.row.justify-content-center.mt-5
+  h1.text-center Merchant details
+  .row.mt-5
+    .card.mt-4
+          .card-body
+            p
+              strong Name: 
+              = @merchant.name
+            p
+              strong Email: 
+              = @merchant.email
+            p
+              strong Description: 
+              = @merchant.description
+            p
+              strong Status: 
+              = @merchant.status.humanize
+            p
+              strong Total transaction sum: 
+              = number_to_currency(@merchant.total_transaction_sum)
 
-= render 'form', merchant: @merchant, disabled: true
-
-- if @transactions.any?
-  h2 Transactions
-  = render '/transactions/table', transactions: @transactions
+  - if @transactions.any?
+    h2.text-center.mt-5 Transactions
+    = render '/transactions/table', transactions: @transactions
