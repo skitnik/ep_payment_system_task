@@ -64,8 +64,6 @@
 *.log
 
 # Ignore Docker files (if using Docker).
-/docker-compose.yml
-/Dockerfile
 /docker-compose.override.yml
 
 # Ignore yarn and node_modules.

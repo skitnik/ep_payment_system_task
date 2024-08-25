@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3.3'
 gem 'dartsass-sprockets', '~> 3.0.0'
 gem 'jwt'
+gem 'mysql2', '~> 0.5'
 gem 'nokogiri'
 gem 'pry', '~> 0.14.2'
 gem 'rubocop-rails', require: false
