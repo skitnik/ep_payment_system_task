@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :transaction do
     amount { 100.0 }
-    customer_email { 'customer@example.com' }
-    customer_phone { '1234567890' }
+    customer_email { Faker::Internet.unique.email }
+    customer_phone { Faker::PhoneNumber.phone_number }
     association :merchant, factory: :merchant
 
     factory :authorize_transaction, class: 'AuthorizeTransaction' do

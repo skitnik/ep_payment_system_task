@@ -21,7 +21,7 @@ RSpec.feature 'Merchant Edit', type: :feature do
   end
 
   scenario 'Non-admin cannot edit a merchant' do
-    non_admin_merchant = create(:merchant, email: 'nonadmin@email.com')
+    non_admin_merchant = create(:merchant)
     login_as(non_admin_merchant)
     visit edit_merchant_path(merchant)
 

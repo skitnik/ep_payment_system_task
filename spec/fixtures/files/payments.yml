@@ -3,7 +3,6 @@ authorize_payment:
   customer_email: 'customer@example.com'
   customer_phone: '1234567890'
   transaction_type: 'authorize'
-  reference_transaction_id: null
 
 charge_payment:
   amount: 50.00

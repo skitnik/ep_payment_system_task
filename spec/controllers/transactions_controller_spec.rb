@@ -5,9 +5,8 @@ require 'rails_helper'
 RSpec.describe TransactionsController, type: :controller do
   let(:admin) { create(:admin) }
   let(:merchant) { create(:merchant) }
-  let(:other_merchant) { create(:merchant, email: 'othermerchant@email.com') }
   let(:transaction) { create(:authorize_transaction, merchant:) }
-  let(:other_transaction) { create(:authorize_transaction, merchant: other_merchant) }
+  let(:other_transaction) { create(:authorize_transaction) }
 
   before do
     def log_in(user)

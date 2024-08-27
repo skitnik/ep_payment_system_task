@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.feature 'User Login', type: :feature do
-  let!(:active_user) { create(:merchant, email: 'active_user@example.com') }
-  let!(:active_admin) { create(:admin, email: 'active_admin@example.com') }
-  let!(:inactive_user) { create(:merchant, email: 'inactive_user@example.com', status: :inactive) }
+  let!(:active_user) { create(:merchant) }
+  let!(:active_admin) { create(:admin) }
+  let!(:inactive_user) { create(:merchant, status: :inactive) }
 
   scenario 'User logs in with valid credentials' do
     login_as(active_user)

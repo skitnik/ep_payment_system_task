@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Transactions Pagination', type: :feature do
   let!(:merchant) { create(:merchant) }
-  let!(:transactions) { create_list(:transaction, 15, merchant:) }
+  let!(:transactions) { create_list(:authorize_transaction, 15, merchant:) }
 
   scenario 'Transactions are paginated' do
     login_as(merchant)

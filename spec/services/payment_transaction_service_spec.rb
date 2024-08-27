@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PaymentTransactionService, type: :service do
-  let(:user) { create(:merchant, email: 'test@merchant.com') }
+  let(:user) { create(:merchant) }
 
   let(:fixture_path) { Rails.root.join('spec/fixtures/files/payments.yml') }
   let(:payment_attributes) { YAML.load_file(fixture_path) }

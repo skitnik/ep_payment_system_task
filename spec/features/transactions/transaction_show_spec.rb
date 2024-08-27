@@ -14,7 +14,7 @@ RSpec.feature 'Transaction Show', type: :feature do
     visit transaction_path(charge_transaction)
 
     expect(page).to have_content(charge_transaction.uuid)
-    expect(page).to have_content(charge_transaction.type.humanize)
+    expect(page).to have_content(charge_transaction.type)
     expect(page).to have_content(charge_transaction.status.humanize)
     expect(page).to have_content(charge_transaction.customer_email)
 
@@ -27,13 +27,13 @@ RSpec.feature 'Transaction Show', type: :feature do
     visit transaction_path(charge_transaction)
 
     expect(page).to have_content(charge_transaction.uuid)
-    expect(page).to have_content(charge_transaction.type.humanize)
+    expect(page).to have_content(charge_transaction.type)
     expect(page).to have_content(charge_transaction.status.humanize)
     expect(page).to have_content(charge_transaction.customer_email)
   end
 
   scenario 'Unauthorized user cannot view transaction details' do
-    other_merchant = create(:merchant, email: 'othermerchant@email.com')
+    other_merchant = create(:merchant)
     login_as(other_merchant)
     visit transaction_path(charge_transaction)
 

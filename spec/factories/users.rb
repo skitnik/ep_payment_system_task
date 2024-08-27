@@ -1,12 +1,19 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user do
-    name { 'name' }
-    email { 'email@example.com' }
+  factory :user, class: 'User' do
+    name { Faker::Company.name }
     password { 'password' }
-    status { 1 }
-    total_transaction_sum { '9.99' }
-    description { 'description' }
+    description { Faker::Company.catch_phrase }
+    email { Faker::Internet.unique.email }
+    status { :active }
+
+    factory :admin, class: 'Admin' do
+      type { 'Admin' }
+    end
+
+    factory :merchant, class: 'Merchant' do
+      type { 'Merchant' }
+    end
   end
 end

@@ -50,7 +50,7 @@
 # Ignore sensitive files.
 /.env
 .env.*
-/config/database.yml
+# /config/database.yml
 
 # Ignore editor and OS-specific files.
 *.swp

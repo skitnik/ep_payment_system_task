@@ -9,7 +9,7 @@ module Api
       result = service.create_transaction
 
       if result[:success]
-        respond_with_result({ status: 'Payment transaction created' }, status: :created)
+        respond_with_result({ status: "Payment transaction ##{result[:transaction][:id]} created" }, status: :created)
       else
         respond_with_result({ error: error_message(result[:error]) }, status: :unprocessable_entity)
       end

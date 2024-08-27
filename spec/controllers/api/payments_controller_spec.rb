@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Payments API', type: :request do
   let(:merchant_user) { create(:merchant) }
-  let(:inactive_merchant) { create(:merchant, email: 'inactive@user.com', status: :inactive) }
+  let(:inactive_merchant) { create(:merchant, status: :inactive) }
   let(:admin_user) { create(:admin) }
 
   let(:fixture_path) { Rails.root.join('spec/fixtures/files/payments.yml') }
@@ -30,7 +30,7 @@ RSpec.describe 'Payments API', type: :request do
         post '/api/payments', params: { payment: authorize_payment_params }, headers: @headers, as: :json
 
         expect(response).to have_http_status(:created)
-        expect(JSON.parse(response.body)['status']).to eq('Payment transaction created')
+        expect(JSON.parse(response.body)['status']).to eq('Payment transaction #1 created')
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'Payments API', type: :request do
         expect(response).to have_http_status(:created)
 
         parsed_hash = Hash.from_xml(response.body)
-        expect(parsed_hash.deep_symbolize_keys).to eq(payment: { status: 'Payment transaction created' })
+        expect(parsed_hash.deep_symbolize_keys).to eq(payment: { status: 'Payment transaction #1 created' })
       end
     end
 

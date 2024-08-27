@@ -3,13 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe DeleteOldTransactionsJob, type: :job do
-  let!(:merchant) { create(:merchant) }
-  let!(:old_authorize_transaction) { create(:authorize_transaction, created_at: 2.hours.ago, merchant:) }
+  let!(:old_authorize_transaction) { create(:authorize_transaction, created_at: 2.hours.ago) }
   let!(:charge_transaction) do
-    create(:charge_transaction, created_at: 1.hour.ago, merchant:, reference_transaction: old_authorize_transaction)
+    create(:charge_transaction, created_at: 1.hour.ago, reference_transaction: old_authorize_transaction)
   end
-  let!(:recent_transaction) { create(:authorize_transaction, created_at: 30.minutes.ago, merchant:) }
-  let!(:old_error_transaction) { create(:authorize_transaction, created_at: 2.hours.ago, merchant:, status: 'error') }
+  let!(:recent_transaction) { create(:authorize_transaction, created_at: 30.minutes.ago) }
+  let!(:old_error_transaction) { create(:authorize_transaction, created_at: 2.hours.ago, status: 'error') }
 
   let(:log_file) { Rails.root.join('log/cron.log') }
 

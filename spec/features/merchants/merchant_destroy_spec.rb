@@ -18,7 +18,7 @@ RSpec.feature 'Merchant Destroy', type: :feature do
   end
 
   scenario 'Non-admin cannot access the merchants index page or delete a merchant' do
-    non_admin_merchant = create(:merchant, email: 'nonadmin@email.com')
+    non_admin_merchant = create(:merchant)
     login_as(non_admin_merchant)
 
     visit merchants_path

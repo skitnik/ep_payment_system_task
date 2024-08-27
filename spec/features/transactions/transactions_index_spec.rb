@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Transactions Index', type: :feature do
   let!(:admin) { create(:admin) }
-  let!(:merchant) { create(:merchant, email: 'merchant@email.com') }
-  let!(:other_merchant) { create(:merchant, email: 'othermerchant@email.com') }
+  let!(:merchant) { create(:merchant) }
+  let!(:other_merchant) { create(:merchant) }
 
   let!(:transaction1) { create(:authorize_transaction, merchant:) }
   let!(:transaction2) { create(:authorize_transaction, merchant:) }

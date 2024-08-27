@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails db:create db:migrate && bundle exec rails s -b '0.0.0.0'"]
+    command: ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails db:drop db:create db:migrate db:seed && bundle exec rails s -b '0.0.0.0'"]
     volumes:
       - .:/payment-system-app
     ports:

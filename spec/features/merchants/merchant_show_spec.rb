@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Merchant Show', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:merchant) { create(:merchant) }
-  let!(:other_merchant) { create(:merchant, email: 'othermerchant@email.com') }
+  let!(:other_merchant) { create(:merchant) }
   let!(:transaction) { create(:authorize_transaction, merchant:) }
 
   scenario 'Admin views merchant details' do

@@ -18,8 +18,7 @@ RSpec.describe ReversalTransaction, type: :model do
 
   it 'reverses the charge transaction and updates the status to reversed' do
     authorize_transaction = create(:authorize_transaction)
-    create(:reversal_transaction, merchant: authorize_transaction.merchant,
-                                  reference_transaction: authorize_transaction)
+    create(:reversal_transaction, reference_transaction: authorize_transaction)
 
     expect(authorize_transaction.reload.status).to eq('reversed')
   end

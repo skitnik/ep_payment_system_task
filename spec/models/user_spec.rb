@@ -37,4 +37,22 @@ RSpec.describe User, type: :model do
       expect(User.find_by(email: user.email).authenticate('wrong_password')).to be_falsey
     end
   end
+
+  context 'when type is valid' do
+    it 'is valid with an allowed user type' do
+      User::ALLOWED_USER_TYPES.each do |user_type|
+        user = build(:user, type: user_type)
+        expect(user).to be_valid
+      end
+    end
+  end
+
+  context 'when type is invalid' do
+    it 'is not valid with an invalid user type' do
+      user = build(:user, type: 'InvalidUserType')
+      expect(user).not_to be_valid
+      expect(user.errors[:type])
+        .to include("must be one of the following: #{User::ALLOWED_USER_TYPES.join(', ')}")
+    end
+  end
 end

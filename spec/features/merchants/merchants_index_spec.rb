@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Merchants Index', type: :feature do
   let!(:admin) { create(:admin) }
   let!(:merchant) { create(:merchant, name: 'Merchant One') }
-  let!(:merchant2) { create(:merchant, name: 'Merchant Two', email: 'merchant2@email.com') }
+  let!(:merchant2) { create(:merchant, name: 'Merchant Two') }
 
   scenario 'Admin sees all merchants' do
     login_as(admin)
